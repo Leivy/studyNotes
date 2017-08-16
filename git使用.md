@@ -1,6 +1,7 @@
 ### git使用
 
 + git add -A;git commit -m "tag";git push origin master;-->联网推送到GitHub远程仓库
++ 先在git创建仓库,$ git clone git@github.com:michaelliao/gitskills.git命令行将git的仓库克隆到本地,在本地将文件放进去后,在重新上传到github,
 
 
 + 一些git bash命令:
@@ -54,3 +55,47 @@
       合并某分支到当前分支：`git merge <name>`
 
       删除分支：`git branch -d <name>`
+
+### bash的一些命令
+
+在无图形操作系统中,通过命令行来操作
+
+1. `pwd`-->print work directory **打印当前路径**
+2. `cd`-->change directory  **改变目录路径**-->`cd ..`(跳到上一级目录)-->`cd 代码`(跳入当前路径下的代码目录)-->`cd ~`(跳到自己的根目录)-->`cd /`回到根目录
+3. `ls`-->list-->**打印目录的文件列表**-->ls -a(打印所有文件包括隐藏文件)-->`ls -l` ==`ll`打印所有文件包括文件信息-->`ls -a -l` 综述--`ls 目录名` 打印目录名下的文件
+4. `clear`-->**清屏**.但是之前输入的命令在上方
+5. `reset`-->**重新开启窗口**
+6. `mkdir`--> make directory-->新建文件目录-->`mkdir js images`创建两个文件夹
+7. `rmdir`-->remove directory--删除目录-->只能删除空的文件夹
+8. `touch`-->创建文件` touch js/index.js css/index.css`创建当前目录下js文件里加index.js 和css文件下的index.css
+9. `rm`-->`rm 文件`删除文件-->`rm -r 文件夹`删除文件夹,无法恢复-->`rm -rf 文件夹`强制删除整个目录
+10. `cp`-->复制
+11. `mv`-->剪切,重命名
+12. `cat`-->查看文件所有内容
+13. `less`-->查看文件部分内容
+
+
+
+
+### 分支
+
+1. 分支切换,保证在工作区和暂存区都干净的情况下,切换后再新建文件作业.`git status-->git checkout 新分支`
+2. 工作区始终和仓库区的分支保持同步,即仓库分支有啥文件就会显示在工作区
+3. 创建分支都是从master开始创建,创建分支时相当于复制一份master主分支作新建分支的基础.后再在新建分支上实现功能`git branch 新分支名`
+4. 主分支master就是拿来显示完整的功能,不作工作区.拿来合并其他功能分支.
+5. 合并分支:`git merge 新分支` 是合并新分支到当前分支上
+6. 修改bug,会在最新的master上新建分支debug,然后开始修复bug
+7. `git checkout -b 新分支名`创建并切换分支
+8. `git branch -d 某分支` 在主分支上删除已经合并到master上的某分支;
+
+#### 分支冲突
+
+1. 代码在不同分支上写在同一行会冲突,手动修改,将自己的代码放在冲突位置后面就行了.是在master里修改冲突,然后重新add commit就行了.
+
+### 远程仓库
+
+中央仓库.
+
+新建仓库-->初始化仓库`git init -bare` 创建裸仓库-->`git push 远程仓库地址/master`把本地仓库推送到远程仓库的master分支上-->`git clone 远程仓库的地址/自定义文件名` 获取到远程仓的代码-->`git pull 远程仓库地址/master` 拉取远程仓库的代码
+
+远程仓库命名一般以.git结尾

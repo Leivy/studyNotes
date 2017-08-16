@@ -4,13 +4,127 @@
   + addElementListener(),第三个参数默认值是false,事件冒泡;true是事件捕获
   + 阻止事件冒泡/捕获:e.stopPropagation();阻止传播;IE678阻止冒泡是:e.cancelBubble=true;
   + 阻止浏览器默认行为:e.preventDefault();
+
 + 事件流 : 事件捕获阶段--事件目标阶段--事件冒泡阶段;
-+ 通过键盘码知道按下的是哪个键,获取键盘码是keydown或者keyup事件,keypress不能获取
+
++ 通过键盘码知道按下的是哪个键,e.keycode,获取键盘码是keydown或者keyup事件,keypress不能获取
+
++ ```
+  navigator.userAgent：浏览器版本
+  ```
 
 
 
 
-### 鼠标位置信息
+### 一些知识点
+
+- ```css
+  /*单行溢出*/
+  .one-txt-cut {
+    overflow: hidden;
+    /* 强制在同一行内显示所有文本，合并文本间的多余空白，直到文本结束或者遭遇br对象。 */
+    white-space: nowrap;
+    /* 当内联内容溢出块容器时，将溢出部分替换为（...）。*/
+    text-overflow: ellipsis;
+  }
+
+  /*多行溢出*/
+  .txt-cut {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*将对象作为弹性伸缩盒显示。（伸缩盒最老版本）（CSS3）*/
+    display: -webkit-box;
+    /*显示2行*/
+    -webkit-line-clamp: 2; 
+    /* 设置伸缩盒对象的子元素从上到下纵向排列 */
+    -webkit-box-orient: vertical;
+  }
+  ```
+
+- 文字的间距:letter-spacing;
+
+- css3
+
+  1.transform属性
+
+  - translate()
+  - rotate()
+  - scale()
+  - skew()
+  - matrix()
+
+- perspective属性的两种书写方式:透视效果
+
+  - 直接给父盒子加perspective,里面的元素形态不一致
+  - 给每个子元素加perspective时,每个子元素都有自己的视点,每个子元素的形态一样.
+
+- perspective-origin:透视点位置
+
+- ```css
+  transform-style: preserve-3d;
+  ```
+
+- ```css
+  backface-visibility:hidden;/*后面的元素设置遮挡看不见效果*/
+  ```
+
+- transform-origin: *x-axis y-axis z-axis*;
+
+  - x和y的取值如下,z取值length
+
+  - ```html
+    top
+    center
+    bottom
+    length
+    %
+    ```
+
+- 进入盒子时,display:block.离开时是display:none;
+
+- 如下是判断鼠标进入盒子的四个方位值:
+
+- ```javascript
+  $("#wrap").bind("mouseenter mouseleave",
+        function(e) {
+          var w = $(this).width();
+          var h = $(this).height();
+          var x = (e.pageX - this.offsetLeft - (w / 2)) * (w > h ? (h / w) : 1);
+          var y = (e.pageY - this.offsetTop - (h / 2)) * (h > w ? (w / h) : 1);
+          console.log([e.pageX,e.pageY]);
+          console.log([this.offsetLeft,this.offsetTop]);
+          console.log([x,y]);
+          var direction = Math.round((((Math.atan2(y, x) * (180 / Math.PI)) + 180) / 90) + 3) % 4;
+          var eventType = e.type;
+          var dirName = new Array('上方','右侧','下方','左侧');
+          if(e.type == 'mouseenter'){
+            $(this).html(dirName[direction]+'进入');
+          }else{
+            $(this).html(dirName[direction]+'离开');
+          }
+        });
+  ```
+
+
+
+- 迭代 : 迭代是重复反馈过程的活动，其目的通常是为了逼近所需目标或结果。每一次对过程的重复称为一次“迭代”，而每一次迭代得到的结果会作为下一次迭代的初始值。
+
+- 盒子自适应的时候,是不能浮动的,这样就拿不到父盒子的宽度了,切记
+
+- **JQuery中index()方法是,返回指定元素相对于其他指定元素的index位置**.
+
+- **JQuery对象中,获取对象中DOM对象的下标方法是:**
+
+  - ```javascript
+    //给单个jQuery对象注册事件,获取当前jQuery对象在JQuery对象伪数组中的下标
+    $jQuery.index( $(this)  );
+    //给jQuery对象注册事件,获取当前DOM元素下标是
+    $(this).index();
+    ```
+
+- 自动滚动到底部:div.scrollIntoView();自动滚动到能看到的地方
+
+### 鼠标位置信息js中
 
 + screenX与screenY:光标相对于屏幕左上角的水平位置和垂直位置.
 
@@ -42,15 +156,13 @@
 
 #### 小知识点
 
-+ 创建新数组来盛放一些数据好拿取.
++ **创建新数组来盛放一些数据好拿取**.
 
 + 清除选中的文字:
 
   + ```javascript
     window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
     ```
-
-  + ​
 
 + JQuery中有scrollTop()方法
 
@@ -72,7 +184,7 @@
 
 + zepto(移动端类似jQuery的一个库)
 
-+ 浏览器打开js文件等,默认是GBK,而我们的文件一般是UTF-8;
++ 浏览器打开js文件等,默认是GBK,而我们的文件一般是UTF-8;所以在页面开头声明是UTF-8;
 
 + 在JQ对象中寻找点击的当前对象,拿来在别的事件中使用时,可以标记下当前对象好拿去用,比如加个不存在的类名或者全局变量存下下标.(其实有一个方法, 如下:
 
@@ -83,11 +195,9 @@
   }
   ```
 
-+ ​
++ **Event对象:**注册事件时指定一个形参e,这个形参就是我们想要获取到的事件对象.e=e || window.event;兼容IE678.
 
-+ 注册事件时指定一个形参e,这个形参就是我们想要获取到的事件对象.e=e || window.event;兼容IE678.
-
-+ 入口函数:等待页面加载完成后.才执行函数.
++ **入口函数:**等待页面加载完成后.才执行函数.js的window.onload和jQuery的$(function(){});
 
 + **在js中给html加style.src时,图片的路径是从HTML开始,不是js开始**
 
@@ -142,10 +252,10 @@ jQuery 使用名为 noConflict() 的方法来解决该问题。
 
 + Fading 方法:
 
-  + fadeIn():$(selector).fadeIn(speed,callback);
-  + fadeOut():$(selector).fadeOut(speed,callback);
-  + fadeToggle():$(selector).fadeToggle(speed,callback);
-  + fadeTo():$(selector).fadeTo(speed,opacity,callback);
+  + fadeIn()--->$(selector).fadeIn(speed,callback);
+  + fadeOut()--->$(selector).fadeOut(speed,callback);
+  + fadeToggle()--->$(selector).fadeToggle(speed,callback);
+  + fadeTo()--->$(selector).fadeTo(speed,opacity,callback);
 
 + 滑动
 
@@ -167,7 +277,7 @@ jQuery 使用名为 noConflict() 的方法来解决该问题。
     $(selector).animate({params},speed,callback);
     ```
 
-+ 隐式迭代:设置样式是会给所有的对象设置上相同的样式,不用遍历.获取样式的时候,不会遍历,直接返回第一个对象的样式..
++ 隐式迭代:设置样式是会给所有的对象设置上相同的样式,不用遍历.**获取样式的时候,不会遍历,直接返回第一个对象的样式..**
 
 + addClass有权重问题,样式作用还是取决于css中的权重来实现效果.
 
@@ -218,7 +328,7 @@ jQuery 使用名为 noConflict() 的方法来解决该问题。
 + 克隆节点
 
   + $.clone().appendTo(父元素);
-    + clone的参数:true和false都是深度复制.true是连事件都一起复制,false却不会
+    + **clone的参数:true和false都是深度复制.true是连事件都一起复制,false却不会**
 
 + width() height()
 
@@ -282,8 +392,8 @@ jQuery 使用名为 noConflict() 的方法来解决该问题。
   + 自身注册:`$(自己).on("事件名",fn);` 
   + 委托事件:$(父亲).on("事件名","子元素",fn);
   + 父元素先处理委托事件再处理自身事件,子元素先处理自身事件,冒泡到父元素再领取一份事件执行.
-  + 在子元素存在动态产生的时候,他的事件要委托给父元素.
-  + on()的data参数,调用on时,可以给on传递一个参数,这个参数会被存储到e.data中.在事件fn中用e.data来调用.值如果是字符串,会与selector冲突.所以得on("click",null,"data字符串",fn);
+  + 在子元素存在动态产生的时候,他的事件要委托给父元素.或者等待子元素生成后再注册事件,比如ajax的success中生成的元素,必须在success中注册事件,
+  + on()的data参数,调用on时,可以给on传递一个参数,这个参数会被存储到e.data中.在事件fn中用e.data来调用.值如果是字符串,会与selector冲突.所以得**on("click",null,"data字符串",fn);**
 
 + off():解除注册的事件,不传参,就解除所有的事件,传参就解除写的事件.
 
@@ -300,7 +410,7 @@ jQuery 使用名为 noConflict() 的方法来解决该问题。
 
 ### 阻止浏览器默认行为和事件冒泡
 
-+ return false;两个都阻止
++ **return false;两个都阻止**
 + e.preventDefault();阻止浏览器默认行为
 + e.stopPropagation();阻止事件冒泡
 
@@ -329,9 +439,7 @@ jQuery 使用名为 noConflict() 的方法来解决该问题。
 
 
 
-### 复习
-
-### JQuery
+### 复习JQuery
 
 - hide() show() toggle();显示隐藏
 
@@ -349,7 +457,7 @@ jQuery 使用名为 noConflict() 的方法来解决该问题。
 
 - text();设置或返回文本内容;html();设置或返回内容包括标签;val();设置或返回表单字段的值.
 
-- attr();获取属性值,有回调函数
+- attr();获取属性值,有回调函数;
 
 - append():在被选元素的结尾插入内容,包含关系;prepend():在被选元素的开头插入内容,包含关系;after():在被选元素之后插入内容,并列关系;before():在被选元素之前插入内容,并列关系.
 
@@ -363,7 +471,7 @@ jQuery 使用名为 noConflict() 的方法来解决该问题。
 
 - JQuery尺寸:width();height();innerWidth();innerHeight();outerWidth();outerHeight();outerWidth(true)包含margin
 
-- ![jQuery Dimensions](https://www.runoob.com/images/img_jquerydim.gif)
+  ![jQuery Dimensions](image/img_jquerydim.gif)
 
 - jQuery祖先:parent()返回直接父元素;parents()返回所有的祖先元素,直至根目录html标签,parentsUntil() 方法返回介于两个给定元素之间的所有祖先元素
 
@@ -546,7 +654,7 @@ jQuery 使用名为 noConflict() 的方法来解决该问题。
   | [$.type()](https://www.runoob.com/jquery/misc-type.html) | 确定JavaScript内置对象的类型                      |
   | [$.unique()](https://www.runoob.com/jquery/misc-unique.html) | 在jQuery 3.0中被弃用。对DOM元素数组进行排序，并移除重复的元素    |
   | [$.uniqueSort()](https://www.runoob.com/jquery/misc-uniquesort.html) | 对DOM元素数组进行排序，并移除重复的元素                    |
-  | [$.data()](https://www.runoob.com/jquery/misc_data.html) | 在指定的元素上存取数据，并返回设置值                       |
+  | [**$.data()**](https://www.runoob.com/jquery/misc_data.html) | 在指定的元素上存取数据，并返回设置值                       |
   | [$.hasData()](https://www.runoob.com/jquery/misc-hasdata.html) | 确定一个元素是否有相关的jQuery数据                     |
   | [$.sub()](https://www.runoob.com/jquery/misc-jquery-sub.html) | 创建一个新的jQuery副本，其属性和方法可以修改，而不会影响原来的jQuery对象 |
   | [$.speed](https://www.runoob.com/jquery/misc-jquery-speed.html) | 创建一个包含一组属性的对象用来定义自定义动画                   |
@@ -614,113 +722,3 @@ jQuery 使用名为 noConflict() 的方法来解决该问题。
   | [length](https://www.runoob.com/jquery/prop-length.html) | 包含 jQuery 对象中元素的数目                    |
   | [jQuery.cssNumber](https://www.runoob.com/jquery/prop-cssnumber.html) | 包含所有可以不使用单位的CSS属性的对象                  |
 
-
-
-
-
-
-
-
-
-
-
-### 一些知识点
-
-- ```css
-  /*单行溢出*/
-  .one-txt-cut {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  /*多行溢出*/
-  .txt-cut {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    /* -webkit-line-clamp: 2; */
-    -webkit-box-orient: vertical;
-  }
-  ```
-
-- 文字的间距:letter-spacing;
-
-- css3
-
-  1.transform属性
-
-  - translate()
-  - rotate()
-  - scale()
-  - skew()
-  - matrix()
-
-- perspective属性的两种书写方式:
-
-  - 直接给父盒子加perspective,里面的元素形态不一致
-  - 给每个子元素加perspective时,每个子元素都有自己的视点,每个子元素的形态一样.
-
-- perspective-origin:透视点位置
-
-- ```css
-  transform-style: preserve-3d;
-  ```
-
-- ```css
-  backface-visibility:hidden;/*后面的元素设置遮挡看不见效果*/
-  ```
-
-- transform-origin: *x-axis y-axis z-axis*;
-
-  - x和y的取值如下,z取值length
-
-  - ```html
-    top
-    center
-    bottom
-    length
-    %
-    ```
-
-- 进入盒子时,display:block.离开时是display:none;
-
-- 如下是判断鼠标进入盒子的四个方位值:
-
-- ```javas
-  $("#wrap").bind("mouseenter mouseleave",
-        function(e) {
-          var w = $(this).width();
-          var h = $(this).height();
-          var x = (e.pageX - this.offsetLeft - (w / 2)) * (w > h ? (h / w) : 1);
-          var y = (e.pageY - this.offsetTop - (h / 2)) * (h > w ? (w / h) : 1);
-          console.log([e.pageX,e.pageY]);
-          console.log([this.offsetLeft,this.offsetTop]);
-          console.log([x,y]);
-          var direction = Math.round((((Math.atan2(y, x) * (180 / Math.PI)) + 180) / 90) + 3) % 4;
-          var eventType = e.type;
-          var dirName = new Array('上方','右侧','下方','左侧');
-          if(e.type == 'mouseenter'){
-            $(this).html(dirName[direction]+'进入');
-          }else{
-            $(this).html(dirName[direction]+'离开');
-          }
-        });
-  ```
-
-- 迭代 : 迭代是重复反馈过程的活动，其目的通常是为了逼近所需目标或结果。每一次对过程的重复称为一次“迭代”，而每一次迭代得到的结果会作为下一次迭代的初始值。
-
-- 盒子自适应的时候,是不能浮动的,这样就拿不到父盒子的宽度了,切记
-
-- JQuery中index()方法是,返回指定元素相对于其他指定元素的index位置.
-
-- JQuery对象中,获取对象中DOM对象的下标方法是:
-
-  - ```javascript
-    $jQuery.index( $(this)  );
-    //获取当前DOM对象在JQuery对象中的下标
-    ```
-
-  - ​
-
-- 自动滚动到底部:div.scrollIntoView();自动滚动到能看到的地方
