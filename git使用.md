@@ -40,6 +40,14 @@
 
   + git push -u origin master:第一次推送到远程仓库,后续用新的命令:$ git push origin master
 
+  + 打标签:
+
+    + 首先，切换到需要打标签的分支上：`$ git checkout master`
+    + 然后，敲命令`git tag <name>`就可以打一个新标签：`$ git tag v1.0`
+    + 可以用命令`git tag`查看所有标签：`$ git tag`
+    + 还可以创建带有说明的标签，用`-a`指定标签名，`-m`指定说明文字：`$ git tag -a v0.1 -m "version 0.1 released" 3628164`
+    + 默认标签是打在最新提交的commit上的。
+
   + 分支
 
     + Git鼓励大量使用分支：
@@ -87,6 +95,7 @@
 6. 修改bug,会在最新的master上新建分支debug,然后开始修复bug
 7. `git checkout -b 新分支名`创建并切换分支
 8. `git branch -d 某分支` 在主分支上删除已经合并到master上的某分支;
+9. 用`git log --graph`命令可以看到分支合并图。
 
 #### 分支冲突
 
@@ -99,3 +108,16 @@
 新建仓库-->初始化仓库`git init -bare` 创建裸仓库-->`git push 远程仓库地址/master`把本地仓库推送到远程仓库的master分支上-->`git clone 远程仓库的地址/自定义文件名` 获取到远程仓的代码-->`git pull 远程仓库地址/master` 拉取远程仓库的代码
 
 远程仓库命名一般以.git结尾
+
+### git blog
+
+网址:https://leivy.github.io/
+
+GitHub pages提供的免费服务器;
+
+#### 新建一篇博客
+
+1. 打开cmd-->`hexo new "blog name"`-->可以在./source/_posts文件夹下发现我们刚刚建立的 name.md文件。使用你熟悉的编辑器打开，便可以进行博文的撰写。
+2. 博文写好-->`hexo g`--> 生成静态文件-->之后生成的文件会放在./public目录下，这便是我们将要部署到GitHub上的全部内容。
+3. 静态文件生成后部署到GitHub上-->`hexo d` 
+4. 然后刷新网页就可以啦啦啦~~~
