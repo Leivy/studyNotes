@@ -228,6 +228,7 @@
 
 + 动画
 
+  + animate.css--->使用别人封装好的动画
   + @keyframes 动画名 :定义动画序列,即帧动画.from开始状态,to结束状态,也可用百分比来做帧动画.
   + animation:动画名+持续时间+过渡类型(linear )+动画延迟时间+循环次数(infinite无限循环)+alternative(正反交替运动)+动画结束的状态(forwards/both动画停留在结束时的状态)+暂停动画(paused).
   + 连写时,持续时间必须写在延迟时间前面,且必须有name和duration.
