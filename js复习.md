@@ -38,9 +38,9 @@
 
 17. `unshift(element1, ..., elementN)` 方法将一个或多个元素添加到数组的开头，并返回新数组的长度。
 
-18. `reduce(function(accumulator, currentValue, currentIndex, array), initialValue)` 方法对累加器和数组中的每个元素 (从左到右)应用一个函数，将其减少为单个值。
+18. `reduce(function(accumulator, currentValue, currentIndex, array), initialValue)` 方法接收一个函数作为累加器（accumulator），数组中的每个值（从左到右）开始合并，最终为一个值。callback接受四个参数：初始值（或者上一次回调函数的返回值），当前元素值，当前索引，调用 `reduce` 的数组。[initialValue]( : 如果 initialValue 在调用 reduce 时被提供，那么第一个 previousValue 等于 initialValue ，并且currentValue 等于数组中的第一个值；如果initialValue 未被提供，那么previousValue 等于数组中的第一个值，currentValue等于数组中的第二个值。) 
 
-19. ```
+    ```javascript
     var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
 
     var countedNames = names.reduce(function (allNames, name) { 
@@ -58,17 +58,18 @@
 
 
 
-18. `reverse()` 方法将数组中元素的位置颠倒。
-19. `slice(beginIndex,endIndex)` 方法返回一个从开始到结束（**不包括结束**）选择的数组的一部分**浅拷贝**到一个新数组对象。原始数组不会被修改。
-20. `splice(start[, deleteCount][, item1, item2, ...])`方法通过删除现有元素或添加新元素来更改一个数组的内容。参数start指定修改的开始位置（从0计数）。如果超出了数组的长度，则从数组末尾开始添加内容；如果是负值，则表示从数组末位开始的第几位（从1计数）。返回值:由被删除的元素组成的一个数组。如果只删除了一个元素，则返回只包含一个元素的数组。如果没有删除元素，则返回空数组。splice() 方法与 slice() 方法的作用是不同的，splice() 方法会直接对数组进行修改。
-21. `some(callback[, thisArg])` 方法测试数组中的某些元素是否通过由提供的函数实现的测试。找到一个符合的数组值就返回true,都不符合则返回false;
-22. `sort()` 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是[稳定的](https://zh.wikipedia.org/wiki/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95#.E7.A9.A9.E5.AE.9A.E6.80.A7)。默认排序顺序是根据字符串Unicode码点。参数可选,用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的诸个字符的Unicode位点进行排序。返回排序后的数组。原数组已经被排序后的数组代替。
-23. `.toLocaleString()`
-24. `toString()` 返回一个字符串，表示指定的数组及其元素。无参数,相当于.join(),将数组拼接成字符串;
+18. `.filter()` 过滤器,经过callback函数return true时,返回当前数组元素,否则丢弃,最后生成新的数组;
+19. `reverse()` 方法将数组中元素的位置颠倒。
+20. `slice(beginIndex,endIndex)` 方法返回一个从开始到结束（**不包括结束**）选择的数组的一部分**浅拷贝**到一个新数组对象。原始数组不会被修改。
+21. `splice(start[, deleteCount][, item1, item2, ...])`方法通过删除现有元素或添加新元素来更改一个数组的内容。参数start指定修改的开始位置（从0计数）。如果超出了数组的长度，则从数组末尾开始添加内容；如果是负值，则表示从数组末位开始的第几位（从1计数）。返回值:由被删除的元素组成的一个数组。如果只删除了一个元素，则返回只包含一个元素的数组。如果没有删除元素，则返回空数组。splice() 方法与 slice() 方法的作用是不同的，splice() 方法会直接对数组进行修改。
+22. `some(callback[, thisArg])` 方法测试数组中的某些元素是否通过由提供的函数实现的测试。找到一个符合的数组值就返回true,都不符合则返回false;
+23. `sort()` 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是[稳定的](https://zh.wikipedia.org/wiki/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95#.E7.A9.A9.E5.AE.9A.E6.80.A7)。默认排序顺序是根据字符串Unicode码点。参数可选,用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的诸个字符的Unicode位点进行排序。返回排序后的数组。原数组已经被排序后的数组代替。
+24. `.toLocaleString()`
+25. `toString()` 返回一个字符串，表示指定的数组及其元素。无参数,相当于.join(),将数组拼接成字符串;
 
 
 
-###字符方法
+###字符串方法
 
 1. `charAt(index)` 方法从一个字符串中返回指定的字符。index默认0;
 

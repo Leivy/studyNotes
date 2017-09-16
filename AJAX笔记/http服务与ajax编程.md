@@ -871,7 +871,7 @@ XMLHttpRequest以异步的方式发送HTTP请求，因此在发送请求时，�
 ```javascript
 //使用XMLHttpRequest发送get请求的步骤
 //1. 创建一个XMLHttpRequest对象
-var xhr = new XMLHttpRequest();//构造函数没有参数的情况,括号可以省略
+var xhr = new XMLHttpRequest;//构造函数没有参数的情况,括号可以省略
 //2. 设置请求行
 //第一个参数:请求方式  get/post
 //第二个参数:请求的地址 需要在url后面拼上参数列表
