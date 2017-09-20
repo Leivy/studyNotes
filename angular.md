@@ -271,8 +271,6 @@ $(document.getElementById("#box")).addClass();//反正就是各种不好用,各�
    	.ontroller('cl',function($scope,$window){});
    ```
 
-   ​
-
    ```javascript
    //推断式为什么传参的名称固定? 原理公式如下:
    var libs = {banshou: {name: "扳手"},qizi: {name: "起子"},dianzuan: { name: "电钻"},langtou: {name: "榔头"},dianju: {name: "电锯"},laohuqian: {name: "老虎钳"}};//模拟angular内部服务的实现
