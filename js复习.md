@@ -66,6 +66,7 @@
 23. `sort()` 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是[稳定的](https://zh.wikipedia.org/wiki/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95#.E7.A9.A9.E5.AE.9A.E6.80.A7)。默认排序顺序是根据字符串Unicode码点。参数可选,用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的诸个字符的Unicode位点进行排序。返回排序后的数组。原数组已经被排序后的数组代替。
 24. `.toLocaleString()`
 25. `toString()` 返回一个字符串，表示指定的数组及其元素。无参数,相当于.join(),将数组拼接成字符串;
+26. ES6的寻找index方法`findIndex(function(v,i){return true/false;}` 
 
 
 
