@@ -314,11 +314,11 @@ Include conf/extra/httpd-vhosts.conf
 <VirtualHost *:80>
     ServerAdmin webmaster@dummy-host.example.com
     #根目录
-    DocumentRoot "C:\www\show"
+    DocumentRoot "D:\working\oa-html"
     #域名
-    ServerName show.com
+    ServerName purcar.com
     #完整域名
-    ServerAlias www.show.com
+    ServerAlias www.purcar.com
     ErrorLog "logs/dummy-host.example.com-error.log"
     CustomLog "logs/dummy-host.example.com-access.log" common
 </VirtualHost>
@@ -345,7 +345,6 @@ Include conf/extra/httpd-vhosts.conf
     ErrorLog "logs/dummy-host.example.com-error.log"
     CustomLog "logs/dummy-host.example.com-access.log" common
 </VirtualHost>
-
 
 ```
 
