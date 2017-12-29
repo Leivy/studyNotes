@@ -1226,6 +1226,7 @@ Vue.config 是一个对象，包含 Vue 的全局配置。可以在启动应用�
   }
   //指定组件的渲染和观察期间未捕获错误的处理函数。这个处理函数被调用时，可获取错误信息和 Vue 实例。
   //Sentry, an error tracking service, provides official integration using this option.
+  ```
 ```
 - ignoredElements
 
@@ -1239,7 +1240,7 @@ Vue.config 是一个对象，包含 Vue 的全局配置。可以在启动应用�
     'my-custom-web-component', 'another-web-component'
   ]
   须使 Vue 忽略在 Vue 之外的自定义元素 (e.g., 使用了 Web Components APIs)。否则，它会假设你忘记注册全局组件或者拼错了组件名称，从而抛出一个关于 Unknown custom element 的警告。
-  ```
+```
 
 - keyCodes
 
@@ -1321,7 +1322,7 @@ new Vue({
   staticRenderFns: res.staticRenderFns
 })
 ```
-        
+
 ### 全局API总结
 
 其实还有几个其他的全局API，不打算在这里讲了，比如扩展组件Vue.extend 的用法、Vue.use加载插件、Vue.filter加载过滤器、Vue.directive自定义指令等
@@ -1432,7 +1433,7 @@ Vue.component('my-component', Vue.extend({ /* ... */ }))
 Vue.component('my-component', { /* ... */ })
 // 获取注册的组件（始终返回构造器）
 var MyComponent = Vue.component('my-component')
-``` 
+```
 
 简单demo：
 
@@ -1697,10 +1698,10 @@ Vue的单文件开发组件的方式也是Vue的一大创新，也发非常好�
 # Vue路由详解
 
 > 对于前端来说，其实浏览器配合超级连接就很好的实现了路由功能。但是对于单页面应用来说，浏览器和超级连接的跳转方式已经不能适用，
-所以各大框架纷纷给出了单页面应用的解决路由跳转的方案。 
+> 所以各大框架纷纷给出了单页面应用的解决路由跳转的方案。 
 
 > Vue框架的兼容性非常好，可以很好的跟其他第三方的路由框架进行结合。当然官方也给出了路由的方案： `vue-router`;
-建议还是用官方的最好，使用量也是最大，相对来说Vue框架的升级路由组件升级也会及时跟上，所以为了以后的维护和升级方便还是使用Vue自家的东西最好。
+> 建议还是用官方的最好，使用量也是最大，相对来说Vue框架的升级路由组件升级也会及时跟上，所以为了以后的维护和升级方便还是使用Vue自家的东西最好。
 
 ## Vue-router的版本对应
 > 注意: vue-router@2.x 只适用于 Vue 2.x 版本。
@@ -1938,7 +1939,7 @@ const app = new Vue({
 /user/9   =>  id = 9
 /user/8   =>  id = 8
 /user/1   =>  id = 1
-```  
+```
 然后在跳转后的vue中可以通过`this.$route.params.参数名`获取对应的参数。
 比如代码：
 
@@ -2125,14 +2126,14 @@ const router = new VueRouter({
     * webpack的基本配置
     * 了解webpack常用的loader： less-loader、sass-loader、 vue-loader、style-loader、css-loader、eslint-loader、babel-loader等
     * 熟悉Webpack的webpack-dev-server的基本配置和使用，会配置热更新
-    
+
 - es6语法学习
   + 阮一峰老师的大作[《ECMAScript 6 入门》](http://es6.ruanyifeng.com/)
   + 需要学习的知识点
     * es6的模块机制
     * 各种最新语法糖，简写、geter、setter、箭头函数
     * 类、继承的心机制
-    ...
+      ...
 - nodejs基础知识
   + 知识点学习：
     * 文件操作
@@ -2260,7 +2261,7 @@ $ npm run dev
 ```
 
 > npm 安装的时候经常网会断开，国内的网（哎，说多了都是泪）你懂的。最好能科学上网，或者是用淘宝的npm的镜像
-  
+
 3. 安装`vue-router`组件
 
 ```shell
@@ -2326,7 +2327,7 @@ $ npm i -S vue-router
   ```
 
   - 产品组件
-  
+
   ```html
   <template>
     <div class="product">
@@ -2381,11 +2382,11 @@ export default new VueRouter({                  // 定义路由规则对象
     {path: '/product/:id', component: Product}
   ]
 })
-``` 
+```
 6. 修改main.js文件
-找到`src/`目录下的main.js文件，
-共修改4处，添加路由引用、添加路由规则对象导入、启用路由、将路由键入到Vue中。   
-修改此文件为：
+  找到`src/`目录下的main.js文件，
+  共修改4处，添加路由引用、添加路由规则对象导入、启用路由、将路由键入到Vue中。   
+  修改此文件为：
 
 ```js
 // The Vue build version to load with the `import` command
@@ -2462,3 +2463,4 @@ export default {
 
 刷新一下浏览器，你将会看到最终的运行结果。
 
+### js判断

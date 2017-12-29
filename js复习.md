@@ -549,3 +549,18 @@ var str = "“你饿了,调我们的粮进京。你渴了.调我们的水进京�
 
 #### 
 
+### js判断微信浏览器 安卓还是ios
+
+[博客](http://caibaojian.com/browser-ios-or-android.html)
+
+
+
+```
+<script type="text/javascript">
+var u = navigator.userAgent;
+var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+alert('是否是Android：'+isAndroid);
+alert('是否是iOS：'+isiOS);
+</script>
+```
